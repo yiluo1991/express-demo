@@ -1,8 +1,33 @@
 var router = require("express").Router();
 var db = require('../db');
 
-/** 获取分类列表
- *  /category/get 
+/**
+ * 
+ * @api {get} /category/get 获取分类列表
+ * @apiName get
+ * @apiGroup category
+ * @apiVersion  1.0.0
+ * 
+ * @apiParam  {String} keyword 查询关键字
+ * 
+ * 
+ * @apiParamExample  {querystring} 请求示例:
+ * keyword=123
+ * 
+ * @apiSuccessExample {type} 请求成功响应示例:
+ * {
+ *     "success":true,
+ *     "message":"查询成功",
+ *     "rows":[{
+ *          "Id":1,
+ *          "Name":"旅游",
+ *          "Src":"/public/1.jpg",
+ *          "SrotNum":100,
+ *          "Enable":1
+ *      }]
+ * }
+ * 
+ * 
  */
 router.get('/get', function (req, res) {
     //undefined,null,0,""都会返回""
@@ -42,7 +67,30 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-//添加分类
+/**
+ * 
+ * @api {POST} /category/add 添加分类
+ * @apiName add
+ * @apiGroup category
+ * @apiVersion  1.0.0
+ * @apiDescription 请使用multipart/form-data提交
+ * 
+ * @apiParam  {String} name 分类名
+ * @apiParam  {String} sortnum 排序号
+ * @apiParam  {Integer} enable 是否启用，1启用，0禁用
+ * @apiParam  {File} file 图片文件
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "添加成功"
+ * }
+ * 
+ * 
+ */
 router.post('/add',
     upload.single("file"),
     function (req, res, next) {
@@ -72,7 +120,32 @@ router.post('/add',
         }
     });
 
-//修改分类
+
+/**
+ * 
+ * @api {POST} /category/edit 修改分类
+ * @apiName edit
+ * @apiGroup category
+ * @apiVersion  1.0.0
+ * @apiDescription 请使用multipart/form-data提交
+ * 
+ * @apiParam  {String} name 分类名
+ * @apiParam  {String} sortnum 排序号
+ * @apiParam  {Integer} enable 是否启用，1启用，0禁用
+ * @apiParam  {File} file (可选)图片文件
+ * @apiParam  {Integer} id Id
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "修改成功"
+ * }
+ * 
+ * 
+ */
 router.post('/edit',
     upload.single("file"),
     function (req, res, next) {
@@ -129,11 +202,25 @@ router.post('/edit',
         }
     });
 
-
 /**
- * 删除
- * /category/delete
- * id:要删除的项的id
+ * 
+ * @api {POST} /category/delete 删除分类
+ * @apiName delete
+ * @apiGroup category
+ * @apiVersion  1.0.0
+ * 
+ * @apiParam  {Integer} id Id
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "删除成功"
+ * }
+ * 
+ * 
  */
 router.post('/delete', function (req, res) {
     if (req.body.id) {

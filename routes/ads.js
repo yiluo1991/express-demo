@@ -14,7 +14,35 @@ var storage = multer.diskStorage({
 }); 
 var upload = multer({ storage: storage });
 
-//查询数据
+
+
+/**
+ * 
+ * @api {get} /ads/get 获取轮播图列表
+ * @apiName get
+ * @apiGroup ads
+ * @apiVersion  1.0.0
+ * 
+ * @apiParam  {String} keyword 查询关键字
+ * 
+ * 
+ * @apiParamExample  {querystring} 请求示例:
+ * keyword=123
+ * 
+ * @apiSuccessExample {type} 请求成功响应示例:
+ * {
+ *     "success":true,
+ *     "message":"查询成功",
+ *     "rows":[{
+ *          "Id":1,
+ *          "Src":"/public/1.jpg",
+ *          "SrotNum":100,
+ *          "Enable":1
+ *      }]
+ * }
+ * 
+ * 
+ */
 router.get('/get', function (req, res) {
     var keyword = req.query.keyword || "";
     db.query("select * from tb_ads where src like ? order by SortNum", ['%' + keyword + "%"], function (err, result) {
@@ -27,7 +55,33 @@ router.get('/get', function (req, res) {
     });
 });
 
-//添加
+
+
+/**
+ * 
+ * @api {POST} /ads/add 添加轮播图
+ * @apiName add
+ * @apiGroup ads
+ * @apiVersion  1.0.0
+ * @apiDescription 请使用multipart/form-data提交
+ * 
+ * 
+ * @apiParam  {String} sortnum 排序号
+ * @apiParam  {Integer} enable 是否启用，1启用，0禁用
+ * @apiParam  {File} file 图片文件
+ * 
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "添加成功"
+ * }
+ * 
+ * 
+ */
 router.post("/add", upload.single('file'), function (req, res) {
     if (req.file) {
         db.query(
@@ -56,7 +110,31 @@ router.post("/add", upload.single('file'), function (req, res) {
 })
 
 
-//修改
+/**
+ * 
+ * @api {POST} /ads/edit 修改轮播图
+ * @apiName edit
+ * @apiGroup ads
+ * @apiVersion  1.0.0
+ * @apiDescription 请使用multipart/form-data提交
+ * 
+ * 
+ * @apiParam  {String} sortnum 排序号
+ * @apiParam  {Integer} enable 是否启用，1启用，0禁用
+ * @apiParam  {File} file (可选)图片文件
+ * @apiParam  {Integer} id Id
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "修改成功"
+ * }
+ * 
+ * 
+ */
 router.post('/edit', upload.single("file"), function (req, res, next) {
     if (req.file) {
         db.query('update tb_ads set `SortNum`=?,`Enable`=?,`Src`=? where `Id`=?', [req.body.sortnum, req.body.enable, "/upload/" + req.file.filename, req.body.id], function (err, result) {
@@ -103,7 +181,28 @@ router.post('/edit', upload.single("file"), function (req, res, next) {
         });
     }
 });
-//删除
+
+
+/**
+ * 
+ * @api {POST} /ads/delete 删除
+ * @apiName delete
+ * @apiGroup ads
+ * @apiVersion  1.0.0
+ * 
+ * @apiParam  {Integer} id Id
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": true,
+ *     "message": "删除成功"
+ * }
+ * 
+ * 
+ */
 router.post('/delete', function (req, res) {
     if (req.body.id) {
         db.query('delete from tb_ads where Id=?', [req.body.id],

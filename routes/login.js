@@ -1,8 +1,30 @@
 var router=require('express').Router();
 var db=require('../db');
+
 /**
- * 登录
- * /login
+ * 
+ * @api {Post} /login 登录
+ * @apiName login
+ * @apiGroup login
+ * @apiVersion 1.0.0
+ * 
+ * 
+ * @apiParam  {String} loginname 用户名
+ * @apiParam  {String} password 密码
+ * 
+ * @apiSuccess (请求成功状态：200) {Boolean} success 登录是否成功
+ * @apiSuccess (请求成功状态：200) {String}  message 提示信息
+ * 
+ * @apiSuccess (登录成功设置Cookie) {Set-Cookie}  node_auth 签名过的用户名信息
+ * 
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "success": false,
+ *     "message": "用户名或密码有误"
+ * }
+ * 
+ * 
  */
 
 router.post('/',function(req,res){

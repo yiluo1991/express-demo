@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npx apidoc -i ./routes -o public/apidoc&&node ./bin/www",
+    "api":"npx apidoc -i ./routes -o public/apidoc"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
