@@ -1,5 +1,6 @@
 var router = require("express").Router();  
 var db = require("../db");
+var path = require('path');
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -10,7 +11,7 @@ var storage = multer.diskStorage({
         console.log(file)
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
-});
+}); 
 var upload = multer({ storage: storage });
 
 //查询数据
