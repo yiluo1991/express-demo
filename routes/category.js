@@ -74,7 +74,7 @@ var upload = multer({ storage: storage });
  * @apiGroup category
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
+ * @apiSampleRequest off
  * @apiParam  {String} name 分类名
  * @apiParam  {String} sortnum 排序号
  * @apiParam  {Integer} enable 是否启用，1启用，0禁用
@@ -128,7 +128,7 @@ router.post('/add',
  * @apiGroup category
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
+ * @apiSampleRequest off
  * @apiParam  {String} name 分类名
  * @apiParam  {String} sortnum 排序号
  * @apiParam  {Integer} enable 是否启用，1启用，0禁用
@@ -210,7 +210,7 @@ router.post('/edit',
  * @apiVersion  1.0.0
  * 
  * @apiParam  {Integer} id Id
- * 
+ * @apiSampleRequest off
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
  * @apiSuccess (请求成功状态：200) {String}  message 提示信息
  * 

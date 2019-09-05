@@ -1,6 +1,8 @@
 {
     "name": "接口文档",
     "version": "1.0.0",
-    "description": "API接口文档,接口域名：http://lihangsoft.com",
-    "title": "接口文档"
+    "description": "API接口文档",
+    "title": "接口文档",
+    "url":"http://localhost:3000",
+    "sampleUrl":"http://localhost:3000"
 }

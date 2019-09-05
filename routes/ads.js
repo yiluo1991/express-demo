@@ -29,7 +29,7 @@ var upload = multer({ storage: storage });
  * @apiParamExample  {querystring} 请求示例:
  * keyword=123
  * 
- * @apiSuccessExample {type} 请求成功响应示例:
+ * @apiSuccessExample {Json} 请求成功响应示例:
  * {
  *     "success":true,
  *     "message":"查询成功",
@@ -64,12 +64,12 @@ router.get('/get', function (req, res) {
  * @apiGroup ads
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
+ * @apiSampleRequest off
  * 
  * @apiParam  {String} sortnum 排序号
  * @apiParam  {Integer} enable 是否启用，1启用，0禁用
  * @apiParam  {File} file 图片文件
- * 
+ * @apiSampleRequest off
  * 
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
  * @apiSuccess (请求成功状态：200) {String}  message 提示信息
@@ -117,8 +117,7 @@ router.post("/add", upload.single('file'), function (req, res) {
  * @apiGroup ads
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
- * 
+ * @apiSampleRequest off
  * @apiParam  {String} sortnum 排序号
  * @apiParam  {Integer} enable 是否启用，1启用，0禁用
  * @apiParam  {File} file (可选)图片文件
@@ -185,13 +184,12 @@ router.post('/edit', upload.single("file"), function (req, res, next) {
 
 /**
  * 
- * @api {POST} /ads/delete 删除
+ * @api {POST} /ads/delete 删除轮播图
  * @apiName delete
  * @apiGroup ads
  * @apiVersion  1.0.0
- * 
+ * @apiSampleRequest off
  * @apiParam  {Integer} id Id
- * 
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
  * @apiSuccess (请求成功状态：200) {String}  message 提示信息
  * 

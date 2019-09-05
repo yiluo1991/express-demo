@@ -67,7 +67,7 @@ define({ "api": [
   {
     "type": "POST",
     "url": "/ads/delete",
-    "title": "删除",
+    "title": "删除轮播图",
     "name": "delete",
     "group": "ads",
     "version": "1.0.0",
@@ -218,12 +218,17 @@ define({ "api": [
         {
           "title": "请求成功响应示例:",
           "content": "{\n    \"success\":true,\n    \"message\":\"查询成功\",\n    \"rows\":[{\n         \"Id\":1,\n         \"Src\":\"/public/1.jpg\",\n         \"SrotNum\":100,\n         \"Enable\":1\n     }]\n}",
-          "type": "type"
+          "type": "Json"
         }
       ]
     },
     "filename": "routes/ads.js",
-    "groupTitle": "ads"
+    "groupTitle": "ads",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/ads/get"
+      }
+    ]
   },
   {
     "type": "POST",
@@ -463,7 +468,61 @@ define({ "api": [
       ]
     },
     "filename": "routes/category.js",
-    "groupTitle": "category"
+    "groupTitle": "category",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/category/get"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/customer/get",
+    "title": "获取用户列表",
+    "name": "get",
+    "group": "customer",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>页码,默认1</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页条数，默认10</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "keyword",
+            "description": "<p>查询关键字</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求示例:",
+          "content": "{\n    \"size\" : 10,\n    \"page\" : 1,\n    \"keyword\":\"小明\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/customer.js",
+    "groupTitle": "customer",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/customer/get"
+      }
+    ]
   },
   {
     "type": "Post",
@@ -529,6 +588,60 @@ define({ "api": [
       ]
     },
     "filename": "routes/login.js",
-    "groupTitle": "login"
+    "groupTitle": "login",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/login"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/ticket/get",
+    "title": "获取门票列表",
+    "name": "get",
+    "group": "ticket",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码，默认1</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>分页条数，默认10</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "keyword",
+            "description": "<p>关键字</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求示例:",
+          "content": "keyword=abc&page=1&size=10",
+          "type": "querystring"
+        }
+      ]
+    },
+    "filename": "routes/ticket.js",
+    "groupTitle": "ticket",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3000/ticket/get"
+      }
+    ]
   }
 ] });
