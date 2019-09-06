@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npx apidoc -i ./routes -o public/apidoc&&node ./bin/www",
-    "api":"npx apidoc -i ./routes -o public/apidoc"
+    "api": "npx apidoc -i ./routes -o public/apidoc"
   },
   "dependencies": {
     "apidoc": "^0.17.7",
