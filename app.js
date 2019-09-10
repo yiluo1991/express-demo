@@ -44,7 +44,7 @@ app.use("/category",require("./routes/category"));
 app.use("/customer",require("./routes/customer"));
 app.use("/ads",require("./routes/ads"));
 app.use("/ticket",require("./routes/ticket"));
-
+app.use("/order",require("./routes/order"));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
