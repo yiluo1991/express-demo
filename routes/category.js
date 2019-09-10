@@ -7,8 +7,8 @@ var db = require('../db');
  * @apiName get
  * @apiGroup category
  * @apiVersion  1.0.0
- * 
- * @apiParam  {String} keyword 查询关键字
+ * @apiPermission 登录用户
+ * @apiParam  {String} [keyword] 查询关键字
  * 
  * 
  * @apiParamExample  {querystring} 请求示例:
@@ -73,11 +73,12 @@ var upload = multer({ storage: storage });
  * @apiName add
  * @apiGroup category
  * @apiVersion  1.0.0
+ * @apiPermission 登录用户
  * @apiDescription 请使用multipart/form-data提交
  * @apiSampleRequest off
  * @apiParam  {String} name 分类名
  * @apiParam  {String} sortnum 排序号
- * @apiParam  {Integer} enable 是否启用，1启用，0禁用
+ * @apiParam  {Integer=1,0} enable 是否启用，1启用，0禁用
  * @apiParam  {File} file 图片文件
  * 
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
@@ -127,12 +128,13 @@ router.post('/add',
  * @apiName edit
  * @apiGroup category
  * @apiVersion  1.0.0
+  * @apiPermission 登录用户
  * @apiDescription 请使用multipart/form-data提交
  * @apiSampleRequest off
  * @apiParam  {String} name 分类名
  * @apiParam  {String} sortnum 排序号
- * @apiParam  {Integer} enable 是否启用，1启用，0禁用
- * @apiParam  {File} file (可选)图片文件
+ * @apiParam  {Integer=1,0} enable 是否启用，1启用，0禁用
+ * @apiParam  {File} [file] 图片文件
  * @apiParam  {Integer} id Id
  * 
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
@@ -208,7 +210,7 @@ router.post('/edit',
  * @apiName delete
  * @apiGroup category
  * @apiVersion  1.0.0
- * 
+ * @apiPermission 登录用户
  * @apiParam  {Integer} id Id
  * @apiSampleRequest off
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功

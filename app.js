@@ -29,6 +29,17 @@ app.use(express.static(path.join(__dirname, 'public'))); //设定公共资源文
 
 
 app.use('/login',require('./routes/login'));
+app.use(function(req,res,next){
+  if(!req.signedCookies.node_auth){
+    res.send({
+      success:false,
+      message:"请登录后再试"
+    })
+  }else{
+    next();
+  }
+})
+app.use("/admin",require("./routes/admin"));
 app.use("/category",require("./routes/category"));
 app.use("/customer",require("./routes/customer"));
 app.use("/ads",require("./routes/ads"));

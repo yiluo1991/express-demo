@@ -7,11 +7,11 @@ var db = require("../db");
  * @apiName get
  * @apiGroup customer
  * @apiVersion  1.0.0
+ * @apiPermission 登录用户
  * 
- * 
- * @apiParam  {Integer} page 页码,默认1
- * @apiParam  {Integer} size 每页条数，默认10
- * @apiParam  {String} keyword 查询关键字
+ * @apiParam  {Integer} [page=1] 当前页码
+ * @apiParam  {Integer} [size=10] 分页条数
+ * @apiParam  {String} [keyword] 关键字
  * 
  * 
  * @apiParamExample  {json} 请求示例:

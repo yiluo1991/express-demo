@@ -7,11 +7,11 @@ var db = require("../db");
  * @apiName get
  * @apiGroup ticket
  * @apiVersion  1.0.0
+ * @apiPermission 登录用户
  * 
- * 
- * @apiParam  {Integer} page 当前页码，默认1
- * @apiParam  {Integer} size 分页条数，默认10
- * @apiParam  {String} keyword 关键字
+ * @apiParam  {Integer} [page=1] 当前页码
+ * @apiParam  {Integer} [size=10] 分页条数
+ * @apiParam  {String} [keyword] 关键字
  * 
  * 
  * @apiParamExample  {querystring} 请求示例:
@@ -123,20 +123,20 @@ var upload = multer({
  * @apiGroup ticket
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
+ * @apiPermission 登录用户
  * @apiParam  {String} title 标题
  * @apiParam  {Number} price 价格
  * @apiParam  {Number} stock 库存
- * @apiParam  {String} shopname 商铺名
- * @apiParam  {String} shopaddress 商铺地址
- * @apiParam  {String} shopphone 商铺电话
- * @apiParam  {Number} lat  经度
- * @apiParam  {Number} long  纬度
+ * @apiParam  {String} [shopname] 商铺名
+ * @apiParam  {String} [shopaddress] 商铺地址
+ * @apiParam  {String} [shopphone] 商铺电话
+ * @apiParam  {Number} lat=0  经度
+ * @apiParam  {Number} long=0  纬度
  * @apiParam  {String} content 介绍
  * @apiParam  {Integer} categoryid 分类id
- * @apiParam  {Integer} enable 启用
+ * @apiParam  {Integer=1,0} enable 启用
  * @apiParam  {Integer} sortnum 排序号
- * @apiParam  {File} file 图片文件，不传则不修改图片地址
+ * @apiParam  {File} [file] 图片文件
  * @apiParam  {Integer} id 门票Id
  * 
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
@@ -203,18 +203,18 @@ router.post('/edit', upload.single("file"), validator.valid({
  * @apiGroup ticket
  * @apiVersion  1.0.0
  * @apiDescription 请使用multipart/form-data提交
- * 
+ * @apiPermission 登录用户
  * @apiParam  {String} title 标题
  * @apiParam  {Number} price 价格
  * @apiParam  {Number} stock 库存
- * @apiParam  {String} shopname 商铺名
- * @apiParam  {String} shopaddress 商铺地址
- * @apiParam  {String} shopphone 商铺电话
- * @apiParam  {Number} lat  经度
- * @apiParam  {Number} long  纬度
+ * @apiParam  {String} [shopname] 商铺名
+ * @apiParam  {String} [shopaddress] 商铺地址
+ * @apiParam  {String} [shopphone] 商铺电话
+ * @apiParam  {Number} lat=0  经度
+ * @apiParam  {Number} long=0  纬度
  * @apiParam  {String} content 介绍
  * @apiParam  {Integer} categoryid 分类id
- * @apiParam  {Integer} enable 启用
+ * @apiParam  {Integer=1,0} enable 启用
  * @apiParam  {Integer} sortnum 排序号
  * @apiParam  {File} file 图片文件
  * 
@@ -277,7 +277,7 @@ router.post('/add', upload.single("file"), validator.valid({
  * @apiName delete
  * @apiGroup ticket
  * @apiVersion  1.0.0
- * 
+ * @apiPermission 登录用户
  * @apiParam  {Integer} id Id
  * @apiSampleRequest off
  * @apiSuccess (请求成功状态：200) {Boolean} success 请求是否成功
